@@ -10,6 +10,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.myrecipepres.model.Recipe
+import com.example.myrecipepres.screens.recipediscovery.RecipeDiscoveryScreen
+import com.example.myrecipepres.screens.recipediscovery.RecipeDiscoveryScreenState
 import com.example.myrecipepres.ui.theme.MyRecipePresTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +25,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    //RecipeDiscoveryScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MyRecipePresTheme {
-        Greeting("Android")
-    }
-}
