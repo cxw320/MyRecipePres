@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.example.myrecipepres.api.SpoonacularApi
 import com.example.myrecipepres.api.responsemodel.RecipeResponse
 import com.example.myrecipepres.model.Recipe
+import com.example.myrecipepres.screens.recipediscovery.RecipeDiscoveryViewModel
 import com.example.myrecipepres.ui.theme.MyRecipePresTheme
 import kotlinx.coroutines.launch
 
@@ -19,13 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycleScope.launch{
-            val recipeList = SpoonacularApi.apiService.getRandomRecipes().body()?.recipes?.map {
-                mapToRecipeModel(it)
-            } ?: listOf(Recipe())
-            Log.d("Caroline","${recipeList[0]}")
-        }
-
+        val recipeDiscoveryViewModel : RecipeDiscoveryViewModel by viewModels()
 
         setContent {
             MyRecipePresTheme {
@@ -39,13 +36,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun mapToRecipeModel(response: RecipeResponse): Recipe {
+@Composable
 
-        return Recipe(
-            id = response.id,
-            title = response.title,
-            imageUrl = response.imageUrl
-        )
-    }
+
+
 }
 
