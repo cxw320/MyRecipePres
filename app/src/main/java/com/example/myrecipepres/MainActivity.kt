@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.myrecipepres.api.ApiService
 import com.example.myrecipepres.model.Recipe
 import com.example.myrecipepres.screens.recipediscovery.RecipeDiscoveryScreen
 import com.example.myrecipepres.screens.recipediscovery.RecipeDiscoveryScreenState
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    //RecipeDiscoveryScreen()
+                    val apiService = ApiService
                 }
             }
         }
