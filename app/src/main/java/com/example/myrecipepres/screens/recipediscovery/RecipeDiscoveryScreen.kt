@@ -19,14 +19,7 @@ import com.example.myrecipepres.R
 import com.example.myrecipepres.model.Recipe
 
 data class RecipeDiscoveryScreenState(
-    val recipeList: List<Recipe> = listOf(
-        Recipe(
-            id = 1,
-            title = "My Recipe",
-            imageUrl = "http://www.foodista.com/recipe/MMSZLRHM/pork-chops-with-garlic-cream",
-            summary = "A Recipe"
-        )
-    )
+    val recipeList: List<Recipe> = listOf()
 )
 
 @OptIn(ExperimentalFoundationApi::class)
