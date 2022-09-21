@@ -12,7 +12,7 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("random?apiKey=bcaa49c492c948dc99175ac11e8dcb66&number=20")
+    @GET("random?number=20")
     suspend fun getRandomRecipes(): Response<RecipeListResponse>
 
 }
@@ -20,6 +20,8 @@ interface ApiService {
 val client: OkHttpClient = OkHttpClient.Builder()
     .addInterceptor(SpoonacularInterceptor())
     .build()
+
+
 
 private val retrofit = Retrofit.Builder()
         .baseUrl("https://api.spoonacular.com/recipes/")
@@ -29,3 +31,10 @@ private val retrofit = Retrofit.Builder()
                 Moshi.Builder().build()
             )
         )
+    .build()
+
+object SpoonacularApi {
+    val apiService : ApiService by lazy {
+        retrofit.create(ApiService::class.java)
+    }
+}
