@@ -8,18 +8,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import com.example.myrecipepres.api.SpoonacularApi
 import com.example.myrecipepres.api.responsemodel.RecipeResponse
 import com.example.myrecipepres.model.Recipe
 import com.example.myrecipepres.ui.theme.MyRecipePresTheme
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        GlobalScope.launch{
+        lifecycleScope.launch{
             val recipeList = SpoonacularApi.apiService.getRandomRecipes().body()?.recipes?.map {
                 mapToRecipeModel(it)
             } ?: listOf(Recipe())
