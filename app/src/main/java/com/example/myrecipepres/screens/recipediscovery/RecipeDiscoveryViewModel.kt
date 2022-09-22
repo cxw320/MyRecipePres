@@ -13,7 +13,7 @@ class RecipeDiscoveryViewModel : ViewModel() {
 
     val recipeDiscoveryScreenStateFlow = MutableStateFlow(RecipeDiscoveryScreenState())
 
-    private var recipeList = emptyList<Recipe>()
+    var recipeList = emptyList<Recipe>()
 
     init{
         viewModelScope.launch{

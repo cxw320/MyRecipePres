@@ -1,12 +1,13 @@
 package com.example.myrecipepres
 
 import android.app.Application
+import com.example.myrecipepres.repository.RecipeRepository
 
 class MyRecipeApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //Repository.initialize(context = this)
+        RecipeRepository.initialize(context = this)
     }
 
 }

@@ -36,9 +36,13 @@ class MainActivity : ComponentActivity() {
                     val recipeDiscoveryState =
                         recipeDiscoveryViewModel.recipeDiscoveryScreenStateFlow.collectAsState()
 
+
+                    
                     RecipeDiscoveryScreen(
                         recipeDiscoveryScreenState = recipeDiscoveryState.value,
-                        onRecipeClick = {})
+                        //recipeDiscoveryScreenState = recipeDiscoveryViewModel.recipeList
+                        onRecipeClick = {}
+                    )
                 }
             }
         }
