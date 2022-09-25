@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
             Log.d("Caroline","${recipeList[0]}")
         }
 
-
         setContent {
             MyRecipePresTheme {
                 // A surface container using the 'background' color from the theme
