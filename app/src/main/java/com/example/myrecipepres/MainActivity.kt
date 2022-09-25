@@ -7,26 +7,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.myrecipepres.api.SpoonacularApi
-import com.example.myrecipepres.api.responsemodel.RecipeResponse
-import com.example.myrecipepres.model.Recipe
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.myrecipepres.ui.theme.MyRecipePresTheme
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        GlobalScope.launch{
-            val recipeList = SpoonacularApi.apiService.getRandomRecipes().body()?.recipes?.map {
-                mapToRecipeModel(it)
-            } ?: listOf(Recipe())
-            Log.d("Caroline","${recipeList[0]}")
-        }
-
-
         setContent {
             MyRecipePresTheme {
                 // A surface container using the 'background' color from the theme
@@ -34,18 +23,22 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    Greeting("Android")
                 }
             }
         }
     }
-
-    fun mapToRecipeModel(response: RecipeResponse): Recipe {
-
-        return Recipe(
-            id = response.id,
-            title = response.title,
-            imageUrl = response.imageUrl
-        )
-    }
 }
 
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    MyRecipePresTheme {
+        Greeting("Android")
+    }
+}
