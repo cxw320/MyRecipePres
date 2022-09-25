@@ -7,26 +7,26 @@ import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.example.myrecipepres.R
 import com.example.myrecipepres.model.Recipe
 
 data class RecipeDiscoveryScreenState(
-    val recipeList: List<Recipe> = listOf()
+    var recipeList: List<Recipe> = mutableListOf()
 )
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RecipeDiscoveryScreen(
-    recipeDiscoveryScreenState: RecipeDiscoveryScreenState,
-    onRecipeClick: (recipeId: String) -> Unit
+   viewModel : RecipeDiscoveryViewModel = viewModel()
 ) {
     Column {
         LazyVerticalGrid(
@@ -34,10 +34,10 @@ fun RecipeDiscoveryScreen(
                 .padding(5.dp),
             cells = GridCells.Fixed(2)
         ) {
-            items(recipeDiscoveryScreenState.recipeList) { recipe ->
+            items(viewModel.recipeDiscoveryScreenState.value.recipeList) { recipe ->
                 RecipeCard(
                     recipe = recipe,
-                    onRecipeClick = onRecipeClick
+                    onRecipeClick = {}
                 )
             }
         }
@@ -68,47 +68,8 @@ fun RecipeCard(
             contentDescription = "test",
         )
 
-        //TODO: Add Recipe Title using a Text composable
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RecipeCardPreview() {
-    Column(
-        modifier = Modifier.width(200.dp)
-    ) {
-        RecipeCard(
-            recipe =
-            Recipe(
-                id = 1,
-                title = "My Recipe",
-                imageUrl = "",
-                summary = "A Recipe"
-            ),
-            onRecipeClick = {}
+        Text(
+            text = recipe.title
         )
     }
 }
-
-//TODO: Add more Recipe objects to the list of Recipes to show full screen
-
-@Preview(showBackground = true)
-@Composable
-fun FullScreenPreview() {
-    RecipeDiscoveryScreen(
-        recipeDiscoveryScreenState = RecipeDiscoveryScreenState(
-            recipeList = listOf(
-                Recipe(
-                    id = 1,
-                    title = "My Recipe",
-                    imageUrl = "",
-                    summary = "A Recipe"
-                )
-            )
-        ),
-        onRecipeClick = {}
-    )
-}
-
-
