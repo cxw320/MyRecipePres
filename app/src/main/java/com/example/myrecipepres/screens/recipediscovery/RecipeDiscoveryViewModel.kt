@@ -11,14 +11,11 @@ class RecipeDiscoveryViewModel : ViewModel() {
 
     private val recipeRepository: RecipeRepository = RecipeRepository.get()
 
-    var recipeDiscoveryScreenState = mutableStateOf(RecipeDiscoveryScreenState())
-
-    var recipeList = emptyList<Recipe>()
+    var recipeList = mutableStateOf<List<Recipe>>(listOf())
 
     init{
         viewModelScope.launch{
-            recipeList = recipeRepository.getRandomRecipes()
-            recipeDiscoveryScreenState.value = RecipeDiscoveryScreenState(recipeList = recipeList)
+            recipeList.value = recipeRepository.getRandomRecipes()
         }
     }
 }

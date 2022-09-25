@@ -19,10 +19,6 @@ import coil.compose.AsyncImage
 import com.example.myrecipepres.R
 import com.example.myrecipepres.model.Recipe
 
-data class RecipeDiscoveryScreenState(
-    var recipeList: List<Recipe> = mutableListOf()
-)
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RecipeDiscoveryScreen(
@@ -34,7 +30,7 @@ fun RecipeDiscoveryScreen(
                 .padding(5.dp),
             cells = GridCells.Fixed(2)
         ) {
-            items(viewModel.recipeDiscoveryScreenState.value.recipeList) { recipe ->
+            items(viewModel.recipeList.value) { recipe ->
                 RecipeCard(
                     recipe = recipe,
                     onRecipeClick = {}
