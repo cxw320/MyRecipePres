@@ -32,8 +32,7 @@ fun RecipeDiscoveryScreen(
         ) {
             items(viewModel.recipeList.value) { recipe ->
                 RecipeCard(
-                    recipe = recipe,
-                    onRecipeClick = {}
+                    recipe = recipe
                 )
             }
         }
@@ -42,16 +41,13 @@ fun RecipeDiscoveryScreen(
 
 @Composable
 fun RecipeCard(
-    recipe: Recipe,
-    onRecipeClick: (recipeId: String) -> Unit
+    recipe: Recipe
 ) {
     Column(
         modifier = Modifier
             .height(230.dp)
             .padding(5.dp)
-            .clickable {
-                onRecipeClick(recipe.id.toString())
-            }
+            .clickable {}
     ) {
         AsyncImage(
             modifier = Modifier
