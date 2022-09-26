@@ -28,7 +28,7 @@ fun RecipeCard(
         AsyncImage(
             modifier = Modifier
                 .height(180.dp)
-                .height(180.dp)
+                .width(180.dp)
                 .clip(shape = RoundedCornerShape(10.dp)),
             contentScale = ContentScale.Crop,
             model = recipe.imageUrl,
