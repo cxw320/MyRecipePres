@@ -45,21 +45,18 @@ fun RecipeCard(
 ) {
     Column(
         modifier = Modifier
-            .height(230.dp)
             .padding(5.dp)
-            .clickable {}
     ) {
         AsyncImage(
             modifier = Modifier
                 .height(180.dp)
-                .fillMaxWidth()
+                .width(180.dp)
                 .clip(shape = RoundedCornerShape(10.dp)),
             contentScale = ContentScale.Crop,
             model = recipe.imageUrl,
-            placeholder = painterResource(R.drawable.food_pic),
-            contentDescription = "test",
+            placeholder = painterResource(R.drawable.recipe_card_placeholder),
+            contentDescription = "placeholder content description",
         )
-
         Text(
             text = recipe.title
         )
