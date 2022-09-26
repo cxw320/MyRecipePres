@@ -1,8 +1,6 @@
 package com.example.myrecipepres.screens.recipediscovery
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -21,25 +19,21 @@ import com.example.myrecipepres.model.Recipe
 
 @Composable
 fun RecipeCard(
-    recipe: Recipe,
-    onRecipeClick: (recipeId: String) -> Unit
+    recipe: Recipe
 ) {
     Column(
         modifier = Modifier
             .padding(5.dp)
-            .clickable {
-                onRecipeClick(recipe.id.toString())
-            }
     ) {
         AsyncImage(
             modifier = Modifier
                 .height(180.dp)
-                .fillMaxWidth()
+                .height(180.dp)
                 .clip(shape = RoundedCornerShape(10.dp)),
             contentScale = ContentScale.Crop,
             model = recipe.imageUrl,
             placeholder = painterResource(R.drawable.recipe_card_placeholder),
-            contentDescription = "test",
+            contentDescription = "placeholder content description",
         )
 
         Text(
@@ -60,8 +54,7 @@ fun RecipeCardPreview() {
                 title = "Super Soft Cinnamon Rolls",
                 imageUrl = "",
                 summary = ""
-            ),
-            onRecipeClick = {}
+            )
         )
     }
 }
